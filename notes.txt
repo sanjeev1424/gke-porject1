@@ -80,3 +80,5 @@ root.render(
       "/blog",
       "/movie/tt1234567"
     ],
+
+     "proxy": "http://localhost:6000", 
