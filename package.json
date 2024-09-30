@@ -49,7 +49,7 @@
     "include": [
       "/",
       "/blog",
-      "/movie/tt1234567"
+      "/movie"
     ],
     "inlineCss": true,
     "puppeteerArgs": [
