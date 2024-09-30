@@ -1,0 +1,38 @@
+.movie-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 200px; // Set width as needed
+  margin: 10px;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .poster-div {
+    img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  .title-div {
+    padding: 10px;
+    text-align: center;
+
+    .movie-title {
+      font-size: 1.2rem;
+      margin: 0;
+      color: #333;
+    }
+
+    .movie-year {
+      font-size: 1rem;
+      margin: 5px 0 0;
+      color: #777;
+    }
+  }
+}

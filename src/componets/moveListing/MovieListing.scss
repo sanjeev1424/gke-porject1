@@ -1,0 +1,35 @@
+.movie-listing {
+    display: flex;
+    flex-direction: row; // Stack title and content
+    align-items: center; // Center content
+    padding: 20px;
+    flex-wrap: wrap;
+    color: beige;
+  
+    .listing-title {
+      font-size: 2rem;
+      margin-bottom: 25px; // Space below the title
+     
+      text-align: center; // Center the title
+    }
+  
+    .error-message {
+      color: red;
+      font-size: 1.5rem;
+      text-align: center;
+      width: 100%; // Center the error message
+    }
+  
+    // Optional: Styles for the card layout
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; // Space between cards
+  }
+  
+  .sub-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }

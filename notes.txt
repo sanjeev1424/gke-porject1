@@ -1,0 +1,82 @@
+called the api for testing
+ using axios
+
+ now moving toward redux tookit part
+
+ feature s
+ store
+ movies folder
+
+
+ configure store
+ 
+ add store and provider index.js/main.jsx
+
+
+movies me slice create krna hai 
+movieSlice.js
+
+intialstate 
+and 
+movieSlice  ceate Slice {reduces and extraReducers }
+
+whenever the addmovies has payload then it will update
+property of  the state below we are updating the movies prperty of state
+
+ 
+addMOvies : (state,{payload})=>{
+     
+    //old way =>  state.movies = {...state,payload};//take copy of state then add new one
+    //but in rdux it defaultly takes the copy of state then you can add diresctly like below.
+
+    state.movies = payload;
+
+}
+ 
+
+
+ import reducer in srore  movieReducer
+
+
+
+
+ 2nd part
+ 1 st part has a synchrous actions
+creating  async thunk in this part 
+
+
+
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { store } from './features/store';
+import { Provider } from 'react-redux';
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+
+    <App />
+    </Provider>
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+
+
+
+// "include": ["/", "/blog", "/movie/tt1234567"],
+
+
+ "include": [
+      "/",
+      "/blog",
+      "/movie/tt1234567"
+    ],
