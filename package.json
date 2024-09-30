@@ -2,6 +2,7 @@
   "name": "movieapp",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:6000", 
  
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
@@ -49,7 +50,7 @@
     "include": [
       "/",
       "/blog",
-      "/movie"
+      "/movie/tt1234567"
     ],
     "inlineCss": true,
     "puppeteerArgs": [
