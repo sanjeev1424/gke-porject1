@@ -42,4 +42,4 @@ jobs:
             sudo rm -rf /var/www/react-app/*
             sudo cp -r ~/react-build-temp/* /var/www/react-app/
             sudo systemctl restart nginx
-            echo "✅ Deployment completed. App running at http://13.233.112.253"
+            echo "✅ Deployment completed. App running at 13.201.42.202"
