@@ -6,7 +6,7 @@ import MovieDetail from "./componets/movieDetail/MovieDetail";
 import PageNotFound from "./componets/pageNotFound/PageNotFound";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Try from "./componets/pageNotFound/Try";
+
 import Blog from "./componets/home/Blog";
 
 function App() {
