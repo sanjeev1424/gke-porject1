@@ -7,7 +7,7 @@ called the api for testing
  store
  movies folder
 
-
+#
  configure store
  
  add store and provider index.js/main.jsx
