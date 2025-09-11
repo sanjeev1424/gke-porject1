@@ -6,18 +6,18 @@ import {
   fetchAsyncMovies,
   fetchAsyncShows,
 } from "../../features/movies/movieSlice";
-import "./home.scss"
+import "./home.scss";
 
 const Home = () => {
   const [name, setName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false); // State to manage submission
   const dispatch = useDispatch();
 
-  const navigate=useNavigate();
-    const handleNavigate = () => {
-        // Navigate to the "About" page
-        navigate('/blog');
-      };
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    // Navigate to the "About" page
+    navigate("/blog");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -53,7 +53,7 @@ const Home = () => {
           <div className="empty-search">
             <h2>Empty Search Field</h2>
             <p>Please enter a title to search for movies or shows.</p>
-            <button  onClick={handleNavigate}>Blog</button>
+            <button onClick={handleNavigate}>Blog</button>
           </div>
         )
       )}
