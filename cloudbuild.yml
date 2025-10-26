@@ -1,33 +1,48 @@
-options:
-  logging: CLOUD_LOGGING_ONLY  # ✅ Fixes the logging error
-  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
-  substitution_option: 'ALLOW_LOOSE'
+substitutions:
+  _CLUSTER: "my-k8-cluster"
+  _REGION: "asia-south1"
+  _REPO: "my-docker-repo"
+  _APP: "my-app"
 
 steps:
-  # Step 1: Build Docker image
+  # Step 1: Build image tagged with COMMIT_SHA
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
-        'build', '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app:$COMMIT_SHA', '.'
+        'build',
+        '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_APP}:${COMMIT_SHA}',
+        '.'
       ]
 
   # Step 2: Push image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
-        'push', 'asia-south1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app:$COMMIT_SHA'
+        'push',
+        'asia-south1-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_APP}:${COMMIT_SHA}'
       ]
 
-  # Step 3: Update image in GKE
+  # Step 3: Deploy new image to GKE
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       [
-        'set', 'image', 'deployment/my-app',
-        'my-app=asia-south1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app:$COMMIT_SHA'
+        'set', 'image', 'deployment/${_APP}',
+        '${_APP}=asia-south1-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_APP}:${COMMIT_SHA}'
       ]
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=asia-south1'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=my-k8-cluster'
+      - 'CLOUDSDK_COMPUTE_REGION=${_REGION}'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER}'
+
+  # Step 4: Verify rollout (optional)
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['rollout', 'status', 'deployment/${_APP}']
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=${_REGION}'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER}'
 
 images:
-  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/my-docker-repo/my-app:$COMMIT_SHA'
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_APP}:${COMMIT_SHA}'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET

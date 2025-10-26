@@ -1,7 +1,15 @@
-FROM node:18-alpine
+# Step 1: Build React app
+FROM node:18 AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 8080
-CMD ["npm", "start"]
+RUN npm run build
+
+# Step 2: Serve with Express
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=build /app /app
+EXPOSE 6000
+ENV PORT=6000
+CMD ["node", "server.js"]
