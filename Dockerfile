@@ -1,13 +1,8 @@
 # Step 1: Build React app
 FROM node:18 AS build
 WORKDIR /app
-
-# Force rebuild when ARG changes
-ARG CACHEBUST=1
-
 COPY package*.json ./
 RUN npm install
-
 COPY . .
 RUN npm run build
 
